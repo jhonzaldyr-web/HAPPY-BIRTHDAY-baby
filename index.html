@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday 💜</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<!-- TOP IMAGES -->
+<div class="top-images">
+
+  <img src="images/wifey.jpg"
+       onclick="showPopup('💜 I love you so much baby')">
+
+  <img src="images/wifey1.jpg"
+       onclick="showPopup('🎂 Happy Birthday my love!')">
+
+  <img src="images/wifey2.jpg"
+       onclick="showPopup('✨ I’m always proud of you')">
+
+</div>
+
+<div class="container">
+
+<h1>🎉 Happy Birthday 💜</h1>
+
+<!-- ENVELOPE -->
+<div class="envelope" id="envelope">
+
+  <div class="flap"></div>
+  <div class="base"></div>
+
+  <div class="letter">
+
+    <div class="message">
+      Wishing you happiness, love, and joy 💜 I will always be here for you no matter what happens.
+    </div>
+
+    <div class="gallery">
+
+      <div class="img-box" onclick="toggle(this)">
+        <img src="images/wifey.jpg">
+        <div class="desc">💜 I love you always</div>
+      </div>
+
+      <div class="img-box" onclick="toggle(this)">
+        <img src="images/wifey1.jpg">
+        <div class="desc">🎂</div>
+      </div>
+
+      <div class="img-box" onclick="toggle(this)">
+        <img src="images/wifey2.jpg">
+        <div class="desc">✨</div>
+      </div>
+
+      <div class="img-box" onclick="toggle(this)">
+        <img src="images/wifey3.jpg">
+        <div class="desc">💖</div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<button class="btn" onclick="togglePopup()">Click Me 🎁</button>
+
+</div>
+
+<!-- POPUP -->
+<div class="overlay" id="overlay"></div>
+
+<div class="popup" id="popup">
+  <h2 id="popupText">💜 Happy Birthday 💜</h2>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
