@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday 💜</title>
+
+<style>
+
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial;
+}
+
+body{
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#c8a2ff,#e3ccff);
+  position:relative;
+}
+
+/* FLOATING HEARTS */
+.heart{
+  position:absolute;
+  width:15px;
+  height:15px;
+  background:#ff4da6;
+  transform:rotate(45deg);
+  animation:floatUp 6s linear infinite;
+  opacity:0.6;
+}
+
+.heart::before,
+.heart::after{
+  content:"";
+  position:absolute;
+  width:15px;
+  height:15px;
+  background:#ff4da6;
+  border-radius:50%;
+}
+
+.heart::before{top:-7px;left:0;}
+.heart::after{left:-7px;top:0;}
+
+@keyframes floatUp{
+  0%{transform:translateY(0) rotate(45deg);}
+  100%{transform:translateY(-120vh) rotate(45deg);}
+}
+
+/* TOP IMAGES */
+.top-images{
+  position:absolute;
+  top:10px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:10px;
+  z-index:9999;
+}
+
+.top-images img{
+  width:70px;
+  height:70px;
+  border-radius:15px;
+  border:3px solid white;
+  cursor:pointer;
+  object-fit:cover;
+}
+
+/* CONTAINER */
+.container{
+  text-align:center;
+  width:90%;
+  max-width:450px;
+  z-index:10;
+}
+
+h1{
+  color:white;
+  margin-bottom:20px;
+}
+
+/* ENVELOPE */
+.envelope{
+  width:320px;
+  height:220px;
+  margin:auto;
+  margin-top:60px;
+  position:relative;
+  cursor:pointer;
+}
+
+/* BASE */
+.base{
+  width:100%;
+  height:100%;
+  background:#b57cff;
+  border-radius:0 0 15px 15px;
+  position:absolute;
+  z-index:1;
+}
+
+/* FLAP */
+.flap{
+  position:absolute;
+  border-left:160px solid transparent;
+  border-right:160px solid transparent;
+  border-top:110px solid #d8b4ff;
+  top:0;
+  transform-origin:top;
+  transition:0.6s;
+  z-index:3;
+}
+
+/* LETTER */
+.letter{
+  position:absolute;
+  top:15px;
+  left:10px;
+  width:300px;
+  height:190px;
+
+  background:white;
+  border-radius:12px;
+  padding:12px;
+
+  opacity:0;
+  transform:translateY(20px);
+  transition:0.7s;
+
+  z-index:2;
+  overflow-y:auto;
+}
+
+/* OPEN */
+.envelope.open .flap{
+  transform:rotateX(180deg);
+}
+
+.envelope.open .letter{
+  opacity:1;
+  transform:translateY(-30px);
+}
+
+/* MESSAGE FIXED */
+.message{
+  color:#4a2a8a;
+  font-weight:bold;
+  margin-bottom:12px;
+  font-size:14px;
+  line-height:1.4;
+}
+
+/* GRID */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px;
+}
+
+.img-box{
+  text-align:center;
+}
+
+.img-box img{
+  width:100%;
+  height:70px;
+  object-fit:cover;
+  border-radius:10px;
+  border:2px solid #e9d8ff;
+}
+
+/* dropdown text */
+.desc{
+  max-height:0;
+  overflow:hidden;
+  font-size:11px;
+  color:#7d3cff;
+  transition:0.3s;
+}
+
+.img-box.active .desc{
+  max-height:50px;
+  margin-top:3px;
+}
+
+/* BUTTON */
+.btn{
+  margin-top:20px;
+  padding:12px 25px;
+  border:none;
+  border-radius:30px;
+  background:#9b59ff;
+  color:white;
+  cursor:pointer;
+}
+
+/* POPUP */
+.overlay{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.4);
+  opacity:0;
+  pointer-events:none;
+  transition:0.3s;
+  z-index:1000;
+}
+
+.overlay.active{
+  opacity:1;
+  pointer-events:all;
+}
+
+.popup{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%) scale(0);
+  background:white;
+  padding:20px;
+  border-radius:15px;
+  width:85%;
+  max-width:320px;
+  text-align:center;
+  transition:0.3s;
+  z-index:1100;
+}
+
+.popup.active{
+  transform:translate(-50%,-50%) scale(1);
+}
+
+.popup h2{
+  font-size:14px;
+  line-height:1.5;
+  color:#5a2ea6;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- FLOATING HEARTS -->
+<script>
+for(let i=0;i<20;i++){
+  let heart=document.createElement("div");
+  heart.className="heart";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.animationDuration=(Math.random()*3+3)+"s";
+  document.body.appendChild(heart);
+}
+</script>
+
+<!-- TOP IMAGES -->
+<div class="top-images">
+
+  <img src="images/wifey.jpg"
+       onclick="showPopup('💜 I love you so much baby')">
+
+  <img src="images/wifey1.jpg"
+       onclick="showPopup('🎂 Happy Birthday my love!')">
+
+  <img src="images/wifey2.jpg"
+       onclick="showPopup('✨ I’m always proud of you')">
+
+</div>
+
+<div class="container">
+
+<h1>🎉 Happy Birthday 💜</h1>
+
+<!-- ENVELOPE -->
+<div class="envelope" id="envelope">
+
+  <div class="flap"></div>
+  <div class="base"></div>
+
+  <div class="letter">
+
+    <div class="message">
+      Wishing you happiness, love, and joy 💜 I will always be here for you no matter what happens.
+    </div>
+
+    <div class="gallery">
+
+      <div class="img-box" onclick="toggle(this)">
+        <img src="images/wifey.jpg">
+        <div class="desc">💜 I love you always</div>
+      </div>
+
+      <div class="img-box" onclick="toggle(this)">
+        <img src="images/wifey1.jpg">
+        <div class="desc">🎂</div>
+      </div>
+
+      <div class="img-box" onclick="toggle(this)">
+        <img src="images/wifey2.jpg">
+        <div class="desc">✨</div>
+      </div>
+
+      <div class="img-box" onclick="toggle(this)">
+        <img src="images/wifey3.jpg">
+        <div class="desc">💖</div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<button class="btn" onclick="togglePopup()">Click Me 🎁</button>
+
+</div>
+
+<!-- POPUP -->
+<div class="overlay" id="overlay"></div>
+
+<div class="popup" id="popup">
+  <h2 id="popupText">💜 Happy Birthday 💜</h2>
+</div>
+
+<script>
+
+/* ENVELOPE */
+document.getElementById("envelope").addEventListener("click",()=>{
+  document.getElementById("envelope").classList.toggle("open");
+});
+
+/* POPUP */
+function showPopup(text){
+  const popup=document.getElementById("popup");
+  const overlay=document.getElementById("overlay");
+
+  document.getElementById("popupText").innerText=text;
+  popup.classList.add("active");
+  overlay.classList.add("active");
+}
+
+/* BUTTON TOGGLE */
+let open=false;
+
+function togglePopup(){
+
+  const popup=document.getElementById("popup");
+  const overlay=document.getElementById("overlay");
+
+  if(open){
+    popup.classList.remove("active");
+    overlay.classList.remove("active");
+    open=false;
+  } else {
+    document.getElementById("popupText").innerText =
+`💜 Happy Birthday Baby 💜
+
+Thank you for coming into my life.
+Thank you for making me smile.
+Thank you for being my peace.
+I love you always 💜`;
+
+    popup.classList.add("active");
+    overlay.classList.add("active");
+    open=true;
+  }
+}
+
+/* CLOSE */
+document.getElementById("overlay").addEventListener("click",()=>{
+  document.getElementById("popup").classList.remove("active");
+  document.getElementById("overlay").classList.remove("active");
+  open=false;
+});
+
+/* DROPDOWN */
+function toggle(el){
+  el.classList.toggle("active");
+}
+
+</script>
+
+</body>
+</html>
